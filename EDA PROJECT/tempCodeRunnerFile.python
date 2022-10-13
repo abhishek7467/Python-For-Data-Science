@@ -1,0 +1,58 @@
+import pandas as pd
+
+table1 = pd.read_csv("customer_details.csv")
+table2 = pd.read_csv("customer_policy_details .csv")
+print("Customer Details is    :   \n",table1)
+print("Customer Policy Details is    :    \n",table2)
+
+table1.columns=['customer_id','Gender','age','driving licence present','region code','previously insured','vehicle age','vehicle damage']
+# print(table1_labels)
+
+# print(table1.info())
+# pri
+print(f"null values  in customer_id is  :      {table1['customer_id'].isnull().sum()} ")
+table1.dropna(subset=['customer_id'],inplace=True)
+print( "After droping Null values from the customer_id  :  ", table1['customer_id'].isnull().sum())
+
+
+print(f"null values  in Gender is  :      {table1['Gender'].isnull().sum()} ")
+table1["Gender"]=table1['Gender'].fillna(table1['Gender'].mode()[0])
+print( "After droping Null values from the Gender  :  ", table1['Gender'].isnull().sum())
+
+
+print(f"null values  in age is  :      {table1['age'].isnull().sum()} ")
+# table1["age"]=table1['age'].fillna(table1['age'].mean())
+table1["age"]=table1["age"].fillna(table1["age"].mean())
+
+print( "After droping Null values from the age  :  ", table1['age'].isnull().sum())
+
+
+print(f"null values  in driving licence present is  :      {table1['driving licence present'].isnull().sum()} ")
+table1["driving licence present"]=table1['driving licence present'].fillna(table1['driving licence present'].mode()[0])
+print( "After droping Null values from the driving licence present  :  ", table1['driving licence present'].isnull().sum())
+
+
+print(f"null values  in region code is  :      {table1['region code'].isnull().sum()} ")
+table1["region code"]=table1['region code'].fillna(table1['region code'].mode()[0])
+print( "After droping Null values from the region code  :  ", table1['region code'].isnull().sum())
+
+
+print(f"null values  in previously insured is  :      {table1['previously insured'].isnull().sum()} ")
+table1["previously insured"]=table1['previously insured'].fillna(table1['previously insured'].mode()[0])
+print( "After droping Null values from the previously insured  :  ", table1['previously insured'].isnull().sum())
+
+
+print(f"null values  in vehicle age is  :      {table1['vehicle age'].isnull().sum()} ")
+table1["vehicle age"]=table1['vehicle age'].fillna(table1['vehicle age'].mean())
+print( "After droping Null values from the vehicle age  :  ", table1['vehicle age'].isnull().sum())
+
+print(f"null values  in vehicle damage is  :      {table1['vehicle damage'].isnull().sum()} ")
+table1["vehicle damage"]=table1['vehicle damage'].fillna(table1['vehicle damage'].mode()[0])
+print( "After droping Null values from the vehicle damage  :  ", table1['vehicle damage'].isnull().sum())
+
+
+
+
+
+
+table2.columns = {'customer_id','annual premium (in Rs)','sales channel code','vintage','response'}
